@@ -29,9 +29,9 @@ public class JDBConnect {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver"); //1단계
 			System.out.println("JDBConnect 기본생성자 1단계 성공");
-			String url = "jdbc:oracle:thin:@192.168.111.101:1521:xe";
-			String id = "boardjsp";
-			String pw = "1234";
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			String id = "id";
+			String pw = "password";
 			connection = DriverManager.getConnection(url, id, pw); //2단계
 			System.out.println("JDBConnect 기본생성자  2단계 성공");
 		} catch (ClassNotFoundException | SQLException e) {
