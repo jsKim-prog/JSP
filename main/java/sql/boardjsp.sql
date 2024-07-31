@@ -48,3 +48,26 @@ insert into board (num, title, content, id, postdate, visitcount) values(seq_boa
 insert into board (num, title, content, id, postdate, visitcount) values(seq_board_num.nextval,'제목4', '내용4', 'bbb', sysdate, 0);
 insert into board (num, title, content, id, postdate, visitcount) values(seq_board_num.nextval,'제목5', '내용6', 'ccc', sysdate, 0);
 insert into board (num, title, content, id, postdate, visitcount) values(seq_board_num.nextval,'제목5', '내용7', 'ddd', sysdate, 0);
+
+select * from member where id='kkw' and pass='1234'
+select count(*) from board where title like '%제%'
+
+select B.*, M.name from member M inner join board B on M.id = B.id where num = '15';
+update board set visitcount = visitcount+1 where num ='15';
+
+
+select * from (select Tb.*, rownum rNum from (select * from BOARD 
+order by num desc ) Tb ) where rNum between 1 and 10;
+
+create table myfile (
+	idx number primary key,
+	name varchar2(50) not null,
+	title varchar2(200) not null,
+	cate varchar2(30),
+	ofile varchar2(100) not null, --원본파일명
+	sfile varchar2(100) not null, --저장파일명
+	postdate date default sysdate not null
+);
+
+select * from myfile;
+--drop table myfile;
