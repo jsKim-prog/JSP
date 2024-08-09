@@ -13,36 +13,52 @@
 		<param-name>INIT_PARAM</param-name>
 		<param-value>web.xml에서 만든 초기화 매개값</param-value>
 	</context-param><!--jsp에서 web.xml 값을 가져오는 연습 -->
-	
-	<!--JDBC용 코드 삽입 : 컴파일 없이 수정가능-->
+
+	<!--servlet용 기본 자료 -->
+	<servlet>
+		<servlet-name>MemberAuth</servlet-name>
+		<servlet-class>servlet.MemberAuth</servlet-class>
+		<init-param>
+			<param-name>admin_id</param-name>
+			<param-value>kky</param-value>
+		</init-param>
+	</servlet>
+	<!--url 매핑용 코드 http://localhost/board-jsp//13Servlet/MemberAuth -->
+	<servlet-mapping>
+		<servlet-name>MemberAuth</servlet-name>
+		<url-pattern>/13Servlet/MemberAuth</url-pattern>
+	</servlet-mapping>
+
+
+	<!--JDBC용 코드 삽입 : 컴파일 없이 수정가능 -->
 	<context-param>
-	<param-name>OracleDriver</param-name>
-	<param-value>oracle.jdbc.OracleDriver</param-value>
+		<param-name>OracleDriver</param-name>
+		<param-value>oracle.jdbc.OracleDriver</param-value>
 	</context-param>
 	<context-param>
-	<param-name>OracleUrl</param-name>
-	<param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
+		<param-name>OracleUrl</param-name>
+		<param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
 	</context-param>
 	<context-param>
-	<param-name>OracleId</param-name>
-	<param-value>boardjsp</param-value>
+		<param-name>OracleId</param-name>
+		<param-value>boardjsp</param-value>
 	</context-param>
 	<context-param>
-	<param-name>OraclePw</param-name>
-	<param-value>1234</param-value>
+		<param-name>OraclePw</param-name>
+		<param-value>1234</param-value>
 	</context-param>
-	
-	<!--페이징 처리용 변수선언  -->
+
+	<!--페이징 처리용 변수선언 -->
 	<context-param>
-	<param-name>POSTS_PER_PAGE</param-name>
-	<param-value>10</param-value> <!--한 페이지에 게시물 10개  -->
+		<param-name>POSTS_PER_PAGE</param-name>
+		<param-value>10</param-value> <!--한 페이지에 게시물 10개 -->
 	</context-param>
 	<context-param>
-	<param-name>PAGES_PER_BLOCK</param-name>
-	<param-value>5</param-value> <!--한 화면에 보이는 페이지 블록 5개  -->
+		<param-name>PAGES_PER_BLOCK</param-name>
+		<param-value>5</param-value> <!--한 화면에 보이는 페이지 블록 5개 -->
 	</context-param>
-	
-	
+
+
 	<!--톰캣에서 에러페이지를 커스텀 처리 -->
 	<error-page>
 		<error-code>404</error-code>
@@ -56,25 +72,25 @@
 		<error-code>500</error-code>
 		<location>/02ImplicitObject/Exception.jsp</location>
 	</error-page>
-	
+
 	<!--세션 관리하기 -->
 	<session-config>
 		<session-timeout>20</session-timeout>
-	</session-config><!--세션의 만료 시간을 20분으로 설정  -->
+	</session-config><!--세션의 만료 시간을 20분으로 설정 -->
 
 
-<!-- POST방식의 한글 깨짐 방지를 위한 필터 설정(필터는 톰캣이 클라이언트의 요청을 처리 전에 걸러서 보낸다.)-->
-  <filter>
-    <filter-name>SetCharEncoding</filter-name>
-    <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
-      <init-param>
-        <param-name>encoding</param-name>
-        <param-value>utf-8</param-value>
-      </init-param>
-  </filter>
-  <filter-mapping><!--매핑은 위에서 만든 필터를 적용할 범위 설정-->
-    <filter-name>SetCharEncoding</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>	
+	<!-- POST방식의 한글 깨짐 방지를 위한 필터 설정(필터는 톰캣이 클라이언트의 요청을 처리 전에 걸러서 보낸다.) -->
+	<filter>
+		<filter-name>SetCharEncoding</filter-name>
+		<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping><!--매핑은 위에서 만든 필터를 적용할 범위 설정 -->
+		<filter-name>SetCharEncoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 </web-app>
